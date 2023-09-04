@@ -1,0 +1,65 @@
+[user]
+    name = Bruno Manoel
+    email = {{ .email }}
+    signingkey = {{ .signingkey }}
+[credential]
+    helper = cache
+[rebase]
+    stat = true
+[rerere]
+    enabled = true
+[push]
+    default = current
+    followTags = true
+[branch]
+    autosetuprebase = always
+[help]
+    autocorrect = 1
+[merge]
+    ff = true
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    # ui = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[fetch]
+    prune = true
+[commit]
+	gpgsign = true
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[delta]
+    features = decorations line-numbers side-by-side
+    syntax-theme = Dracula
+
+[delta "line-numbers"]
+#     line-numbers-left-style = cyan
+#     line-numbers-right-style = cyan
+    line-numbers-minus-style = 124
+    line-numbers-plus-style = 28
+
+[delta "interactive"]
+    keep-plus-minus-markers = true
+
+[delta "decorations"]
+#     commit-decoration-style = bold yellow box ul
+#     hunk-header-decoration-style = cyan box ul
+#     commit-decoration-style = blue ol
+    file-decoration-style = none
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
