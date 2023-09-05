@@ -1,0 +1,9 @@
+window:
+  opacity: 0.8
+  # dynamic_title: true
+  # decorations_theme_variant: None
+font:
+  size: 17
+  normal:
+    family: FiraCode Nerd Font
+    #family: JetBrainsMono Nerd Font
