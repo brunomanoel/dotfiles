@@ -1,0 +1,36 @@
+{{- /* Checks if running interactively, which is not the case for GitHub Codespaces or Remote Containers */ -}}
+{{- $interactive := stdinIsATTY -}}
+{{- $container:= env "REMOTE_CONTAINERS" | not | not -}}
+{{- $codespaces:= env "CODESPACES" | not | not -}}
+
+{{- /* Initializes the email variable with a default value */ -}}
+{{- $email := "26349861+brunomanoel@users.noreply.github.com" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else if $interactive -}}
+{{-   $email = promptString "email" $email -}}
+{{- end -}}
+
+{{- /* Initializes the signingkey variable */ -}}
+{{- $signingkey := "" -}}
+{{- if hasKey . "signingkey" -}}
+{{-   $signingkey = .signingkey -}}
+{{- else if $interactive -}}
+{{-   $signingkey = promptString "git signingkey" $signingkey -}}
+{{- end -}}
+
+{{- if $interactive -}}
+{{-   writeToStdout "💡 Tip: you can re-enter your name and email with `chezmoi init --data=false`.\n" -}}
+{{- end -}}
+
+sourceDir = "{{ .chezmoi.sourceDir }}"
+
+[data]
+    name = "Bruno Manoel"
+    email = "{{ $email }}"
+    signingkey = "{{ $signingkey }}"
+[edit]
+    command = "code"
+    args = ["--wait"]
+[diff]
+    pager = "delta"
